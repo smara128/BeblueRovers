@@ -24,23 +24,32 @@ class ListPhotosViewController: UIViewController, UICollectionViewDataSource, UI
     //  var router: (NSObjectProtocol & ListPhotosRoutingLogic & ListPhotosDataPassing)?
     
     var displayedPhotos: [ListPhotos.FetchPhotos.ViewModel.DisplayedPhoto] = []
+    var selectedRover: MarsRovers
+    
     
     // MARK: Object lifecycle
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
+        selectedRover = MarsRovers.Curiosity
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
     
     required init?(coder aDecoder: NSCoder)
     {
+        selectedRover = MarsRovers.Curiosity
         super.init(coder: aDecoder)
         setup()
     }
     
-    // MARK: Setup
+    // MARK: View lifecycle
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        fetchPhotos()
+    }
     
+    // MARK: Setup
     private func setup()
     {
         let viewController = self
@@ -56,7 +65,6 @@ class ListPhotosViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     // MARK: Routing
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let scene = segue.identifier {
@@ -67,26 +75,39 @@ class ListPhotosViewController: UIViewController, UICollectionViewDataSource, UI
         }
     }
     
-    // MARK: View lifecycle
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        fetchPhotos()
-    }
     
     // MARK: Photos
     func fetchPhotos()
     {
-        let request = ListPhotos.FetchPhotos.Request()
+        let request = ListPhotos.FetchPhotos.Request(rover: selectedRover.rawValue)
         interactor?.fetchPhotos(request: request)
     }
+    
     
     func displayPhotos(viewModel: ListPhotos.FetchPhotos.ViewModel)
     {
         displayedPhotos = viewModel.displayedPhotos
         collectionView.reloadData()
     }
+    
+    //  MARK: Actions
+    @IBAction func roversSegmentTapped(_ sender: UISegmentedControl) {
+        let index = sender.selectedSegmentIndex
+        
+        switch index {
+        case 0:
+            selectedRover = MarsRovers.Curiosity
+        case 1:
+            selectedRover = MarsRovers.Opportunity
+        case 2:
+            selectedRover = MarsRovers.Spirit
+        default:
+            selectedRover = MarsRovers.Curiosity
+        }
+        fetchPhotos()
+    }
+    
+    
     
     
     //  MARK: UICollectionViewDataSource

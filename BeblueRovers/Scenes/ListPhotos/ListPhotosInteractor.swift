@@ -34,13 +34,17 @@ class ListPhotosInteractor: ListPhotosBusinessLogic, ListPhotosDataStore
     // MARK: Fetch Photos
     
     func fetchPhotos(request: ListPhotos.FetchPhotos.Request) {
-            worker = PhotosWorker(photosStore: PhotosAPI.sharedInstance())
+        worker = PhotosWorker(photosStore: PhotosAPI.sharedInstance())
         worker?.fetchPhotos(completionHandler: { (photos, error) in
             print(photos as Any)
+            if let photos = photos {
+                let response = ListPhotos.FetchPhotos.Response(photos: photos)
+                self.presenter?.presentPhotos(response: response)
+            } else {
+                self.presenter?.presentFetchError()
+            }
+            
         })
-//        let response = ListPhotos.FetchPhotos.Response()
-//        presenter?.presentPhotos(response: response)
-        
     }
     
     

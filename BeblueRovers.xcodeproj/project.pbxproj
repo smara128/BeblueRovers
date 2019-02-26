@@ -14,6 +14,7 @@
 		8C1BB9572223379400170AB3 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB9562223379400170AB3 /* Camera.swift */; };
 		8C1BB959222337A400170AB3 /* Rover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB958222337A400170AB3 /* Rover.swift */; };
 		8C1BB95C22233C3C00170AB3 /* PhotosAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB95B22233C3C00170AB3 /* PhotosAPI.swift */; };
+		8C1BB95E222594C200170AB3 /* PhotosAPI+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB95D222594C200170AB3 /* PhotosAPI+Constants.swift */; };
 		8CE082A62222EED400D13B57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE082A52222EED400D13B57 /* AppDelegate.swift */; };
 		8CE082AB2222EED400D13B57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE082A92222EED400D13B57 /* Main.storyboard */; };
 		8CE082AD2222EED600D13B57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE082AC2222EED600D13B57 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		8C1BB9562223379400170AB3 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		8C1BB958222337A400170AB3 /* Rover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rover.swift; sourceTree = "<group>"; };
 		8C1BB95B22233C3C00170AB3 /* PhotosAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAPI.swift; sourceTree = "<group>"; };
+		8C1BB95D222594C200170AB3 /* PhotosAPI+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosAPI+Constants.swift"; sourceTree = "<group>"; };
 		8CE082A22222EED400D13B57 /* BeblueRovers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeblueRovers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE082A52222EED400D13B57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CE082AA2222EED400D13B57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				8C1BB95B22233C3C00170AB3 /* PhotosAPI.swift */,
+				8C1BB95D222594C200170AB3 /* PhotosAPI+Constants.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				8CE082CC2223222C00D13B57 /* ListPhotosModels.swift in Sources */,
 				8CE082C822231C6B00D13B57 /* ListPhotosViewController.swift in Sources */,
 				8C1BB9572223379400170AB3 /* Camera.swift in Sources */,
+				8C1BB95E222594C200170AB3 /* PhotosAPI+Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

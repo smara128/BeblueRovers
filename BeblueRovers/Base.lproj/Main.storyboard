@@ -21,10 +21,13 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EV2-M7-oPP">
                                 <rect key="frame" x="0.0" y="74" width="375" height="29"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                    <segment title=""/>
+                                    <segment title="Curiosity"/>
+                                    <segment title="Opportunity"/>
+                                    <segment title="Spirit"/>
                                 </segments>
+                                <connections>
+                                    <action selector="roversSegmentTapped:" destination="BkI-np-fWd" eventType="valueChanged" id="dea-ea-Hc4"/>
+                                </connections>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9DV-xV-y4q">
                                 <rect key="frame" x="0.0" y="112" width="375" height="555"/>

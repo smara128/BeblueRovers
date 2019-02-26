@@ -15,24 +15,11 @@ import UIKit
 enum ListPhotos
 {
     // MARK: Use cases
-    
-    enum Something
-    {
-        struct Request
-        {
-        }
-        struct Response
-        {
-        }
-        struct ViewModel
-        {
-        }
-    }
-    
     enum FetchPhotos
     {
         struct Request
         {
+            var rover: String
         }
         struct Response
         {
@@ -42,8 +29,8 @@ enum ListPhotos
         {
             struct DisplayedPhoto
             {
-                var id: String
-                var camera: String
+                var cameraName: String
+                var cameraFullName: String
                 var earthDate: Date
                 var img_src: String
                 

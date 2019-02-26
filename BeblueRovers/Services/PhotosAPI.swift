@@ -33,7 +33,7 @@ class PhotosAPI: PhotosStoreProtocol {
         
         let task = session.dataTask(with: request) { (data, response, error) in
             guard (error == nil) else {
-                completionHandler(nil, PhotosStoreError.CannotFetch("Task to fetch photos returned error \(error!)"))
+                completionHandler(nil, PhotosStoreError.CannotFetch("Task returned error \(error!)"))
                 return
             }
             
@@ -89,5 +89,52 @@ class PhotosAPI: PhotosStoreProtocol {
         
     }
     
+    func fetchImage(_ urlString: String, completionHandlerForImage: @escaping (Data?, PhotosStoreError?) -> Void) -> Void {
+        guard let url = URL(string: urlString) else {
+            completionHandlerForImage(nil, PhotosStoreError.CannotFetch(urlString))
+            return
+        }
+
+        let request = URLRequest(url: url)
+        let task = session.dataTask(with: request) { (data, response, error) in
+            guard (error == nil) else {
+                completionHandlerForImage(nil, PhotosStoreError.CannotFetch("There was an error with your request: \(error!)"))
+                return
+            }
+            
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                completionHandlerForImage(nil, PhotosStoreError.CannotFetch("Your request returned a status code other than 2xx!"))
+                return
+            }
+            
+            guard let data = data else {
+                completionHandlerForImage(nil, PhotosStoreError.CannotFetch("No data was returned by the request!"))
+                return
+            }
+            
+            completionHandlerForImage(data, nil)
+        }
+        task.resume()
+        
+    }
     
+    
+    
+    
+    // create a URL from parameters
+    private func urlFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
+        
+        var components = URLComponents()
+        components.scheme = Constants.Scheme
+        components.host = Constants.Host
+        components.path = Constants.ApiPath + (withPathExtension ?? "")
+        components.queryItems = [URLQueryItem]()
+        
+        for (key, value) in parameters {
+            let queryItem = URLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
+        
+        return components.url!
+    }
 }

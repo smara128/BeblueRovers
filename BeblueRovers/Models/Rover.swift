@@ -14,3 +14,9 @@ struct Rover {
     var totalPhotos: Double
     var cameras: [Camera]
 }
+
+enum MarsRovers: String {
+    case Curiosity
+    case Opportunity
+    case Spirit
+}
