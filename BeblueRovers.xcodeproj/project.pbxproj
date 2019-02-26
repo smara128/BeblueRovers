@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C1BB94A2223307400170AB3 /* ListPhotosInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB9492223307400170AB3 /* ListPhotosInteractor.swift */; };
+		8C1BB94C222331E900170AB3 /* ListPhotosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB94B222331E900170AB3 /* ListPhotosPresenter.swift */; };
+		8C1BB952222336B800170AB3 /* PhotosWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB951222336B800170AB3 /* PhotosWorker.swift */; };
+		8C1BB9552223371000170AB3 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB9542223371000170AB3 /* Photo.swift */; };
+		8C1BB9572223379400170AB3 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB9562223379400170AB3 /* Camera.swift */; };
+		8C1BB959222337A400170AB3 /* Rover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB958222337A400170AB3 /* Rover.swift */; };
+		8C1BB95C22233C3C00170AB3 /* PhotosAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB95B22233C3C00170AB3 /* PhotosAPI.swift */; };
+		8C1BB95E222594C200170AB3 /* PhotosAPI+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BB95D222594C200170AB3 /* PhotosAPI+Constants.swift */; };
 		8CE082A62222EED400D13B57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE082A52222EED400D13B57 /* AppDelegate.swift */; };
-		8CE082A82222EED400D13B57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE082A72222EED400D13B57 /* ViewController.swift */; };
 		8CE082AB2222EED400D13B57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE082A92222EED400D13B57 /* Main.storyboard */; };
 		8CE082AD2222EED600D13B57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE082AC2222EED600D13B57 /* Assets.xcassets */; };
 		8CE082B02222EED600D13B57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE082AE2222EED600D13B57 /* LaunchScreen.storyboard */; };
 		8CE082BB2222EED600D13B57 /* BeblueRoversTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE082BA2222EED600D13B57 /* BeblueRoversTests.swift */; };
+		8CE082C822231C6B00D13B57 /* ListPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE082C722231C6B00D13B57 /* ListPhotosViewController.swift */; };
+		8CE082CC2223222C00D13B57 /* ListPhotosModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE082CB2223222C00D13B57 /* ListPhotosModels.swift */; };
+		8CE082CF22232AAE00D13B57 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE082CE22232AAE00D13B57 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,9 +36,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C1BB9492223307400170AB3 /* ListPhotosInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosInteractor.swift; sourceTree = "<group>"; };
+		8C1BB94B222331E900170AB3 /* ListPhotosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosPresenter.swift; sourceTree = "<group>"; };
+		8C1BB951222336B800170AB3 /* PhotosWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosWorker.swift; sourceTree = "<group>"; };
+		8C1BB9542223371000170AB3 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		8C1BB9562223379400170AB3 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		8C1BB958222337A400170AB3 /* Rover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rover.swift; sourceTree = "<group>"; };
+		8C1BB95B22233C3C00170AB3 /* PhotosAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAPI.swift; sourceTree = "<group>"; };
+		8C1BB95D222594C200170AB3 /* PhotosAPI+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosAPI+Constants.swift"; sourceTree = "<group>"; };
 		8CE082A22222EED400D13B57 /* BeblueRovers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeblueRovers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE082A52222EED400D13B57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8CE082A72222EED400D13B57 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8CE082AA2222EED400D13B57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8CE082AC2222EED600D13B57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CE082AF2222EED600D13B57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +53,9 @@
 		8CE082B62222EED600D13B57 /* BeblueRoversTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeblueRoversTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE082BA2222EED600D13B57 /* BeblueRoversTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeblueRoversTests.swift; sourceTree = "<group>"; };
 		8CE082BC2222EED600D13B57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CE082C722231C6B00D13B57 /* ListPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosViewController.swift; sourceTree = "<group>"; };
+		8CE082CB2223222C00D13B57 /* ListPhotosModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosModels.swift; sourceTree = "<group>"; };
+		8CE082CE22232AAE00D13B57 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +76,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C1BB9502223369C00170AB3 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				8C1BB951222336B800170AB3 /* PhotosWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		8C1BB953222336EB00170AB3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8C1BB9542223371000170AB3 /* Photo.swift */,
+				8C1BB9562223379400170AB3 /* Camera.swift */,
+				8C1BB958222337A400170AB3 /* Rover.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8C1BB95A22233C1400170AB3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8C1BB95B22233C3C00170AB3 /* PhotosAPI.swift */,
+				8C1BB95D222594C200170AB3 /* PhotosAPI+Constants.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		8CE082992222EED400D13B57 = {
 			isa = PBXGroup;
 			children = (
@@ -77,8 +124,11 @@
 		8CE082A42222EED400D13B57 /* BeblueRovers */ = {
 			isa = PBXGroup;
 			children = (
+				8C1BB95A22233C1400170AB3 /* Services */,
+				8C1BB953222336EB00170AB3 /* Models */,
+				8C1BB9502223369C00170AB3 /* Workers */,
+				8CE082C522231BC100D13B57 /* Scenes */,
 				8CE082A52222EED400D13B57 /* AppDelegate.swift */,
-				8CE082A72222EED400D13B57 /* ViewController.swift */,
 				8CE082A92222EED400D13B57 /* Main.storyboard */,
 				8CE082AC2222EED600D13B57 /* Assets.xcassets */,
 				8CE082AE2222EED600D13B57 /* LaunchScreen.storyboard */,
@@ -94,6 +144,34 @@
 				8CE082BC2222EED600D13B57 /* Info.plist */,
 			);
 			path = BeblueRoversTests;
+			sourceTree = "<group>";
+		};
+		8CE082C522231BC100D13B57 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8CE082C622231BD400D13B57 /* ListPhotos */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		8CE082C622231BD400D13B57 /* ListPhotos */ = {
+			isa = PBXGroup;
+			children = (
+				8CE082C722231C6B00D13B57 /* ListPhotosViewController.swift */,
+				8C1BB9492223307400170AB3 /* ListPhotosInteractor.swift */,
+				8C1BB94B222331E900170AB3 /* ListPhotosPresenter.swift */,
+				8CE082CB2223222C00D13B57 /* ListPhotosModels.swift */,
+				8CE082CD22232A8200D13B57 /* CustomViews */,
+			);
+			path = ListPhotos;
+			sourceTree = "<group>";
+		};
+		8CE082CD22232A8200D13B57 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				8CE082CE22232AAE00D13B57 /* PhotoCollectionViewCell.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +275,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CE082A82222EED400D13B57 /* ViewController.swift in Sources */,
+				8C1BB959222337A400170AB3 /* Rover.swift in Sources */,
+				8C1BB9552223371000170AB3 /* Photo.swift in Sources */,
 				8CE082A62222EED400D13B57 /* AppDelegate.swift in Sources */,
+				8C1BB94C222331E900170AB3 /* ListPhotosPresenter.swift in Sources */,
+				8C1BB94A2223307400170AB3 /* ListPhotosInteractor.swift in Sources */,
+				8C1BB95C22233C3C00170AB3 /* PhotosAPI.swift in Sources */,
+				8C1BB952222336B800170AB3 /* PhotosWorker.swift in Sources */,
+				8CE082CF22232AAE00D13B57 /* PhotoCollectionViewCell.swift in Sources */,
+				8CE082CC2223222C00D13B57 /* ListPhotosModels.swift in Sources */,
+				8CE082C822231C6B00D13B57 /* ListPhotosViewController.swift in Sources */,
+				8C1BB9572223379400170AB3 /* Camera.swift in Sources */,
+				8C1BB95E222594C200170AB3 /* PhotosAPI+Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +451,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8KTVZYBHF;
 				INFOPLIST_FILE = BeblueRovers/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -381,6 +470,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8KTVZYBHF;
 				INFOPLIST_FILE = BeblueRovers/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
