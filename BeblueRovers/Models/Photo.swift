@@ -14,6 +14,7 @@ struct Photo {
     var imageSource: String
     var imageData: Data?
 //    var camera: Camera
+    
 }
 
 

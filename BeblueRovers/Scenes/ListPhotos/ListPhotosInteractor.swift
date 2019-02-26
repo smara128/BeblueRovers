@@ -15,6 +15,7 @@ import UIKit
 protocol ListPhotosBusinessLogic
 {
     func fetchPhotos(request: ListPhotos.FetchPhotos.Request)
+    func fetchImage(request: ListPhotos.FetchImage.Request)
 }
 
 protocol ListPhotosDataStore
@@ -23,9 +24,10 @@ protocol ListPhotosDataStore
 
 class ListPhotosInteractor: ListPhotosBusinessLogic, ListPhotosDataStore
 {
-   
+    
     var presenter: ListPhotosPresentationLogic?
-      var worker: PhotosWorker?
+    var worker: PhotosWorker?
+    var photos: [Photo] = []
     
     
     // MARK: Fetch Photos
@@ -34,36 +36,33 @@ class ListPhotosInteractor: ListPhotosBusinessLogic, ListPhotosDataStore
         worker?.fetchPhotos(rover: request.rover, completionHandler: { (photos, error) in
             print(photos as Any)
             if let photos = photos {
-                for photo in photos {
-                    var photo = photo
-                    let request = ListPhotos.FetchImage.Request(urlStr:photo.imageSource)
-                    self.fetchImage(request: request, completionHandler: { (imageData, photoStoreError) in
-                        if let imageData = imageData {
-                            photo.imageData = imageData
-                        }
-                    })
-                }
-                
+                self.photos = photos
                 let response = ListPhotos.FetchPhotos.Response(photos: photos)
                 self.presenter?.presentPhotos(response: response)
             } else {
                 self.presenter?.presentFetchError()
             }
-            
         })
     }
     
-    func fetchImage(request: ListPhotos.FetchImage.Request, completionHandler: @escaping (Data?, PhotosStoreError?) -> Void) {
+    func fetchImage(request: ListPhotos.FetchImage.Request) {
+        var photo = photoWith(photoId: request.photoId)
+        
         worker = PhotosWorker(photosStore: PhotosAPI.sharedInstance())
         worker?.fetchImage(request.urlStr, completionHandlerForImage: { (image, photoStoreError) in
             if let image = image {
-                    completionHandler(image, nil)
+                photo?.imageData = image
+                let response = ListPhotos.FetchImage.Response(indexPath: request.indexPath, photoId: request.photoId, imageData: image)
+                self.presenter?.presentImage(response: response)
             } else {
-                completionHandler(nil, photoStoreError)
             }
         })
         
     }
     
+    
+    func photoWith(photoId :Int) -> Photo? {
+        return photos.filter{ $0.id == photoId}.first
+    }
     
 }

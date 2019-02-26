@@ -12,6 +12,12 @@
 
 import UIKit
 
+protocol PhotosStoreProtocol
+{
+    func fetchPhotos(rover:String, date:String, completionHandler: @escaping ([Photo]?, PhotosStoreError?) -> Void)
+    func fetchImage(_ urlString: String, completionHandlerForImage: @escaping (Data?, PhotosStoreError?) -> Void)
+}
+
 class PhotosWorker
 {
     var photosStore: PhotosStoreProtocol
@@ -45,6 +51,7 @@ class PhotosWorker
     func fetchImage(_ urlString: String, completionHandlerForImage: @escaping (Data?, PhotosStoreError?) -> Void) {
         photosStore.fetchImage(urlString) { (data, photosStoreError) in
             if let data = data {
+                
                 DispatchQueue.main.async {
                     completionHandlerForImage(data, nil)
                 }
@@ -53,10 +60,11 @@ class PhotosWorker
                     completionHandlerForImage(nil, photosStoreError)
                 }
             }
-            
         }
-        
     }
+    
+    
+    
     
 }
 

@@ -51,7 +51,7 @@
                                                 </imageView>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="0.90196078430000004" green="0.1450980392" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="XL3-Wi-35v" secondAttribute="bottom" id="Fo6-DO-cWw"/>
                                             <constraint firstItem="XL3-Wi-35v" firstAttribute="leading" secondItem="dbN-XE-kFd" secondAttribute="leading" id="H2n-qa-sjO"/>

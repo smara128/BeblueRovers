@@ -15,10 +15,12 @@ import UIKit
 protocol ListPhotosDisplayLogic: class
 {
     func displayPhotos(viewModel: ListPhotos.FetchPhotos.ViewModel)
+    func displayImage(viewModel: ListPhotos.FetchImage.ViewModel)
 }
 
 class ListPhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ListPhotosDisplayLogic
 {
+    
     @IBOutlet weak var collectionView: UICollectionView!
       var interactor: ListPhotosBusinessLogic?
     //  var router: (NSObjectProtocol & ListPhotosRoutingLogic & ListPhotosDataPassing)?
@@ -90,6 +92,12 @@ class ListPhotosViewController: UIViewController, UICollectionViewDataSource, UI
         collectionView.reloadData()
     }
     
+    func displayImage(viewModel: ListPhotos.FetchImage.ViewModel) {
+        if let cell = collectionView.cellForItem(at: viewModel.indexPath) as? PhotoCollectionViewCell {
+            cell.photoImageView.image = viewModel.image
+        }        
+    }
+    
     //  MARK: Actions
     @IBAction func roversSegmentTapped(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
@@ -130,6 +138,14 @@ class ListPhotosViewController: UIViewController, UICollectionViewDataSource, UI
         let cellWidth = (view.frame.size.width - 30) / 2
         let cellHeight = (cellWidth * 4) / 3
         return  CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let displayedPhoto = displayedPhotos[indexPath.row]
+        if displayedPhoto.img_data == nil {
+            let request = ListPhotos.FetchImage.Request(indexPath: indexPath, photoId: displayedPhoto.photoId, urlStr: displayedPhoto.img_src)
+            interactor?.fetchImage(request: request)
+        }
     }
     
     
