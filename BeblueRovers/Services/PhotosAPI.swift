@@ -8,11 +8,6 @@
 
 import Foundation
 
-protocol PhotosStoreProtocol
-{
-    func fetchPhotos(rover:String, date:String, completionHandler: @escaping ([Photo]?, PhotosStoreError?) -> Void)
-    func fetchImage(_ urlString: String, completionHandlerForImage: @escaping (Data?, PhotosStoreError?) -> Void)
-}
 
 class PhotosAPI: PhotosStoreProtocol {
     
@@ -35,7 +30,7 @@ class PhotosAPI: PhotosStoreProtocol {
         let url = urlFromParameters(parametersWithApiKey,  withPathExtension: mutableMethod)// else {
         let request = URLRequest(url:url)
         
-        session.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             guard (error == nil) else {
                 completionHandler(nil, PhotosStoreError.CannotFetch("Task returned error \(error!)"))
                 return
@@ -62,8 +57,8 @@ class PhotosAPI: PhotosStoreProtocol {
                 completionHandler(nil, PhotosStoreError.CannotFetch( "Could not parse the data as JSON: \(data)"))
             }
 
-        }.resume()
-//        task.resume()
+        }
+        task.resume()
     }
         
     
@@ -100,6 +95,7 @@ class PhotosAPI: PhotosStoreProtocol {
         }
 
         let request = URLRequest(url: url)
+        
         let task = session.dataTask(with: request) { (data, response, error) in
             guard (error == nil) else {
                 completionHandlerForImage(nil, PhotosStoreError.CannotFetch("There was an error with your request: \(error!)"))
@@ -115,7 +111,7 @@ class PhotosAPI: PhotosStoreProtocol {
                 completionHandlerForImage(nil, PhotosStoreError.CannotFetch("No data was returned by the request!"))
                 return
             }
-            
+            print("Image data: \(data)")
             completionHandlerForImage(data, nil)
         }
         task.resume()

@@ -29,6 +29,7 @@ enum ListPhotos
         {
             struct DisplayedPhoto
             {
+                var photoId: Int
                 var cameraName: String
                 var cameraFullName: String
                 var date: String
@@ -44,14 +45,20 @@ enum ListPhotos
     {
         struct Request
         {
+            var indexPath: IndexPath
+            var photoId: Int
             var urlStr: String
         }
         struct Response
         {
-            var image: UIImage
+            var indexPath: IndexPath
+            var photoId: Int
+            var imageData: Data
         }
         struct ViewModel
         {
+            var indexPath: IndexPath
+            var photoId: Int
             var image: UIImage
         }
     }
