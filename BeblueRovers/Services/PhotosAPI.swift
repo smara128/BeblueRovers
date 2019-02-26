@@ -8,6 +8,12 @@
 
 import Foundation
 
+protocol PhotosStoreProtocol
+{
+    func fetchPhotos(rover:String, date:String, completionHandler: @escaping ([Photo]?, PhotosStoreError?) -> Void)
+    func fetchImage(_ urlString: String, completionHandlerForImage: @escaping (Data?, PhotosStoreError?) -> Void)
+}
+
 class PhotosAPI: PhotosStoreProtocol {
     
     var session = URLSession.shared
@@ -19,19 +25,17 @@ class PhotosAPI: PhotosStoreProtocol {
         return Singleton.sharedInstance
     }
     
-    func fetchPhotos(completionHandler: @escaping ([Photo]?, PhotosStoreError?) -> Void) {
+    func fetchPhotos(rover:String, date:String, completionHandler: @escaping ([Photo]?, PhotosStoreError?) -> Void) {
+        var parametersWithApiKey = [ParameterKeys.EarthDate: date]
+        parametersWithApiKey[ParameterKeys.ApiKey] = Constants.ApiKey
         
-        // demo for testing purposes
-        let urlStringTest = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=DEMO_KEY"
+        var mutableMethod: String = Methods.Rovers
+        mutableMethod = substituteKeyInMethod(mutableMethod, key: URLKeys.Rover, value: rover)!
+       
+        let url = urlFromParameters(parametersWithApiKey,  withPathExtension: mutableMethod)// else {
+        let request = URLRequest(url:url)
         
-        guard let url = URL(string: urlStringTest) else {
-            completionHandler(nil, PhotosStoreError.CannotFetch(urlStringTest))
-            return
-        }
-        
-        let request = URLRequest(url: url)
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
+        session.dataTask(with: request) { (data, response, error) in
             guard (error == nil) else {
                 completionHandler(nil, PhotosStoreError.CannotFetch("Task returned error \(error!)"))
                 return
@@ -58,8 +62,8 @@ class PhotosAPI: PhotosStoreProtocol {
                 completionHandler(nil, PhotosStoreError.CannotFetch( "Could not parse the data as JSON: \(data)"))
             }
 
-        }
-        task.resume()
+        }.resume()
+//        task.resume()
     }
         
     
@@ -80,7 +84,7 @@ class PhotosAPI: PhotosStoreProtocol {
                     continue
             }
             
-            let photo = Photo(id: id, earthDate: earthDate, imageSource: imageSource)
+            let photo = Photo(id: id, earthDate: earthDate, imageSource: imageSource, imageData: nil)
             print(photo as Any)
             photos.append(photo)
         }
@@ -122,12 +126,12 @@ class PhotosAPI: PhotosStoreProtocol {
     
     
     // create a URL from parameters
-    private func urlFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
+    private func urlFromParameters(_ parameters: [String:String], withPathExtension: String? = nil) -> URL {
         
         var components = URLComponents()
         components.scheme = Constants.Scheme
         components.host = Constants.Host
-        components.path = Constants.ApiPath + (withPathExtension ?? "")
+        components.path = Constants.Path + (withPathExtension ?? "")
         components.queryItems = [URLQueryItem]()
         
         for (key, value) in parameters {
@@ -136,5 +140,13 @@ class PhotosAPI: PhotosStoreProtocol {
         }
         
         return components.url!
+    }
+    
+    func substituteKeyInMethod(_ method: String, key: String, value: String) -> String? {
+        if method.range(of: "{\(key)}") != nil {
+            return method.replacingOccurrences(of: "{\(key)}", with: value)
+        } else {
+            return nil
+        }
     }
 }

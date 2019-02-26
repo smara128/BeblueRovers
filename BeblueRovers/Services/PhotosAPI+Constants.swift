@@ -15,8 +15,8 @@ extension PhotosAPI {
 
         // MARK: URLs
         static let Scheme = "https"
-        static let Host = "api.nasa.gov/mars-photos/api"
-        static let ApiPath = "/v1"
+        static let Host = "api.nasa.gov"
+        static let Path = "/mars-photos/api/v1"
     }
     
     struct Methods {

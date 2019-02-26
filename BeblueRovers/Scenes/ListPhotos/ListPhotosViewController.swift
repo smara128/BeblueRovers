@@ -79,7 +79,7 @@ class ListPhotosViewController: UIViewController, UICollectionViewDataSource, UI
     // MARK: Photos
     func fetchPhotos()
     {
-        let request = ListPhotos.FetchPhotos.Request(rover: selectedRover.rawValue)
+        let request = ListPhotos.FetchPhotos.Request(rover: selectedRover.rawValue.lowercased())
         interactor?.fetchPhotos(request: request)
     }
     
@@ -112,15 +112,16 @@ class ListPhotosViewController: UIViewController, UICollectionViewDataSource, UI
     
     //  MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10//displayedPhotos.count
+        return displayedPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        //        let displayedPhoto = displayedPhotos[indexPath.row]
+        let displayedPhoto = displayedPhotos[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionCell", for: indexPath) as! PhotoCollectionViewCell
-        
-        //        cell.photoImageView.image = displayedPhoto.img_src
+        if let imageData = displayedPhoto.img_data, let image = UIImage(data: imageData) {
+            cell.photoImageView.image = image
+        }
         
         return cell
     }

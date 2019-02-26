@@ -12,6 +12,7 @@ struct Photo {
     var id: Int
     var earthDate: String
     var imageSource: String
+    var imageData: Data?
 //    var camera: Camera
 }
 

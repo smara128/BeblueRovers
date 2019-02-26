@@ -19,25 +19,31 @@ protocol ListPhotosBusinessLogic
 
 protocol ListPhotosDataStore
 {
-    //var name: String { get set }
 }
 
 class ListPhotosInteractor: ListPhotosBusinessLogic, ListPhotosDataStore
 {
-    
+   
     var presenter: ListPhotosPresentationLogic?
       var worker: PhotosWorker?
-    //var name: String = ""
-    
     
     
     // MARK: Fetch Photos
-    
     func fetchPhotos(request: ListPhotos.FetchPhotos.Request) {
         worker = PhotosWorker(photosStore: PhotosAPI.sharedInstance())
-        worker?.fetchPhotos(completionHandler: { (photos, error) in
+        worker?.fetchPhotos(rover: request.rover, completionHandler: { (photos, error) in
             print(photos as Any)
             if let photos = photos {
+                for photo in photos {
+                    var photo = photo
+                    let request = ListPhotos.FetchImage.Request(urlStr:photo.imageSource)
+                    self.fetchImage(request: request, completionHandler: { (imageData, photoStoreError) in
+                        if let imageData = imageData {
+                            photo.imageData = imageData
+                        }
+                    })
+                }
+                
                 let response = ListPhotos.FetchPhotos.Response(photos: photos)
                 self.presenter?.presentPhotos(response: response)
             } else {
@@ -45,6 +51,18 @@ class ListPhotosInteractor: ListPhotosBusinessLogic, ListPhotosDataStore
             }
             
         })
+    }
+    
+    func fetchImage(request: ListPhotos.FetchImage.Request, completionHandler: @escaping (Data?, PhotosStoreError?) -> Void) {
+        worker = PhotosWorker(photosStore: PhotosAPI.sharedInstance())
+        worker?.fetchImage(request.urlStr, completionHandlerForImage: { (image, photoStoreError) in
+            if let image = image {
+                    completionHandler(image, nil)
+            } else {
+                completionHandler(nil, photoStoreError)
+            }
+        })
+        
     }
     
     

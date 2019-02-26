@@ -31,11 +31,28 @@ enum ListPhotos
             {
                 var cameraName: String
                 var cameraFullName: String
-                var earthDate: Date
+                var date: String
                 var img_src: String
+                var img_data: Data?
                 
             }
             var displayedPhotos: [DisplayedPhoto]
+        }
+    }
+    
+    enum FetchImage
+    {
+        struct Request
+        {
+            var urlStr: String
+        }
+        struct Response
+        {
+            var image: UIImage
+        }
+        struct ViewModel
+        {
+            var image: UIImage
         }
     }
 }

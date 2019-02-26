@@ -11,10 +11,6 @@
 //
 
 import UIKit
-protocol PhotosStoreProtocol
-{
-    func fetchPhotos(completionHandler: @escaping ([Photo]?, PhotosStoreError?) -> Void)
-}
 
 class PhotosWorker
 {
@@ -23,12 +19,17 @@ class PhotosWorker
     init(photosStore: PhotosStoreProtocol) {
         self.photosStore = photosStore
     }
+
     
-    func fetchPhotos(completionHandler: @escaping ([Photo]?, PhotosStoreError?) -> Void)
+    func fetchPhotos(rover: String, completionHandler: @escaping ([Photo]?, PhotosStoreError?) -> Void)
     {
-        photosStore.fetchPhotos { (photos, photosStoreError) in
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: "2015-6-3")!
+        let dateStr = dateFormatter.string(from: date)
+        
+        photosStore.fetchPhotos(rover: rover, date: dateStr) { (photos, photosStoreError) in
             if let photos = photos {
-                // convert data to photos
                 DispatchQueue.main.async {
                     completionHandler(photos, nil)
                 }
@@ -40,7 +41,25 @@ class PhotosWorker
         }
     }
     
+    
+    func fetchImage(_ urlString: String, completionHandlerForImage: @escaping (Data?, PhotosStoreError?) -> Void) {
+        photosStore.fetchImage(urlString) { (data, photosStoreError) in
+            if let data = data {
+                DispatchQueue.main.async {
+                    completionHandlerForImage(data, nil)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completionHandlerForImage(nil, photosStoreError)
+                }
+            }
+            
+        }
+        
+    }
+    
 }
+
 
 
 

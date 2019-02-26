@@ -27,16 +27,12 @@ class ListPhotosPresenter: ListPhotosPresentationLogic
     func presentPhotos(response: ListPhotos.FetchPhotos.Response)
     {
         var displayedPhotos: [ListPhotos.FetchPhotos.ViewModel.DisplayedPhoto] = []
-//        for photo in response.photos {
-//            let date = dateFormatter.string(from: order.date)
-//            let total = currencyFormatter.string(from: order.total)
-//            let displayedOrder = ListOrders.FetchOrders.ViewModel.DisplayedOrder(id: order.id!, date: date, email: order.email, name: "\(order.firstName) \(order.lastName)", total: total!)
-//            displayedOrders.append(displayedOrder)
-//        }
-//        let viewModel = ListOrders.FetchOrders.ViewModel(displayedOrders: displayedOrders)
-//        viewController?.displayFetchedOrders(viewModel: viewModel)
-//        let viewModel = ListPhotos.FetchPhotos.ViewModel(displayedPhotos: response)
-//        viewController?.displayPhotos(viewModel: viewModel)
+        for photo in response.photos {
+            let displayedPhoto = ListPhotos.FetchPhotos.ViewModel.DisplayedPhoto(cameraName:"", cameraFullName:"", date: photo.earthDate, img_src: photo.imageSource, img_data: photo.imageData)
+            displayedPhotos.append(displayedPhoto)
+        }
+        let viewModel = ListPhotos.FetchPhotos.ViewModel(displayedPhotos: displayedPhotos)
+        viewController?.displayPhotos(viewModel: viewModel)
     }
     
     func presentFetchError() {
